@@ -8,7 +8,7 @@
 
 - set_fact:
     docker_compose_reinstall: yes
-  when: '(docker_compose_installed_version is success and (docker_compose_installed_version.stdout | regex_replace("^.*?([0-9\.]+)$", "\\1") | version_compare(docker_compose_version, operator="!=")))'
+  when: (docker_compose_installed_version is success and (docker_compose_installed_version.stdout.split(" ")[2].strip(",") is version(docker_compose_version, "!=")))
   tags: docker-compose
 
 - block:
