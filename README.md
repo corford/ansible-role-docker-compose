@@ -1,2 +1,11 @@
-# ansible-role-docker-compose
-Installs docker compose
+# Ansible Role: Docker Compose
+
+Ansible docker-compose role for Ubuntu systems.
+
+## Dependencies
+
+None
+
+## License
+
+MIT / BSD
