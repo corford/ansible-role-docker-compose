@@ -8,7 +8,7 @@
 
 - set_fact:
     docker_compose_reinstall: yes
-  when: '(docker_compose_installed_version|success and (docker_compose_installed_version.stdout | regex_replace("^.*?([0-9\.]+)$", "\\1") | version_compare(docker_compose_version, operator="!=")))'
+  when: '(docker_compose_installed_version is success and (docker_compose_installed_version.stdout | regex_replace("^.*?([0-9\.]+)$", "\\1") | version_compare(docker_compose_version, operator="!=")))'
   tags: docker-compose
 
 - block:
@@ -18,5 +18,5 @@
         dest: "{{ docker_compose_install_path }}"
         checksum: "{{ docker_compose_checksum }}"
         mode: 0755
-  when: docker_compose_installed_version|failed or docker_compose_reinstall        
+  when: docker_compose_installed_version is failed or docker_compose_reinstall        
   tags: docker-compose
